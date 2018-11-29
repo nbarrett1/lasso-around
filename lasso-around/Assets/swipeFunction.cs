@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class swipeFunction : MonoBehaviour
 {
     public swipeScript swipeControls;
-    bool inContact;
+    private bool inContact;
 
     private void FixedUpdate()
     {
@@ -17,7 +18,7 @@ public class swipeFunction : MonoBehaviour
         if (swipeControls.SwipeUp && inContact)
         {
             inContact = false;
-            print("Swipe up");
+            //print("Swipe up");
         }
     }
 
@@ -29,7 +30,7 @@ public class swipeFunction : MonoBehaviour
 
         if (!swipeControls.SwipeUp && inContact)
         {
-            print("Tap");
+            //print("Tap");
         }
 
         inContact = false;
