@@ -2,18 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CowboyMovement : MonoBehaviour {
+public class CowboyMovement : MonoBehaviour
+{
 
-	[SerializeField]
-	private float speed;
+    [SerializeField]
+    private float speed;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		transform.RotateAround(Vector3.zero, Vector3.forward, speed * Time.deltaTime);
-	}
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.RotateAround(Vector3.zero, Vector3.forward, speed * Time.deltaTime);
+    }
+
+    public void ChangeDirection()
+    {
+
+        speed *= -1;
+
+    }
 }

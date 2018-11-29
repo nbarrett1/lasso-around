@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
+    private CowboyMovement cowboyMovement;
+
+    [SerializeField]
     private GameObject SpherePoints;
 
     [SerializeField]
@@ -36,6 +39,11 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+#if PLATFORM_IOS
+        Application.targetFrameRate = 60;
+        QualitySettings.vSyncCount = 0;
+#endif
+
         //GameObject spawnedHorse = Instantiate(Horse, PositionsOnSphere[0].localPosition, Quaternion.identity);
         //spawnedHorse.transform.parent = gameObject.transform;
         //StartCoroutine(TickTock());
@@ -59,7 +67,8 @@ public class GameController : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            SpawnHorse();
+            //SpawnHorse();
+            //cowboyMovement.ChangeDirection();
         }
     }
 
@@ -103,7 +112,7 @@ public class GameController : MonoBehaviour
 
             spawnedHorse = Instantiate(Horse, PositionsOnSphere[randomPosition].localPosition, Quaternion.identity);
 
-            print(" horse position " + horseIsAtPosition);
+            //print(" horse position " + horseIsAtPosition);
         }
     }
 
