@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class CowboyMovement : MonoBehaviour
 {
-
     [SerializeField]
     private float speed;
-
-    // Use this for initialization
-    void Start()
-    {
-
-    }
 
     // Update is called once per frame
     void Update()
@@ -22,8 +15,6 @@ public class CowboyMovement : MonoBehaviour
 
     public void ChangeDirection()
     {
-
         speed *= -1;
-
     }
 }
