@@ -16,5 +16,6 @@ public class CowboyMovement : MonoBehaviour
     public void ChangeDirection()
     {
         speed *= -1;
+		transform.localScale = new Vector3 (transform.localScale.x, transform.localScale.y *-1F, transform.localScale.z);
     }
 }
