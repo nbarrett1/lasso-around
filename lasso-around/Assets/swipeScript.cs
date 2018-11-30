@@ -6,9 +6,12 @@ public class swipeScript : MonoBehaviour
 {
     public CowboyMovement cowboyMovement;
 
-    protected bool tap, swipeUp;
+    protected bool tap, swipeUp, swipeDown, swipeLeft, swipeRight;
     public bool Tap { get { return tap; } }
     public bool SwipeUp { get { return swipeUp; } }
+    public bool SwipeDown { get { return swipeDown; } }
+    public bool SwipeLeft { get { return swipeLeft; } }
+    public bool SwipeRight { get { return swipeRight; } }
 
     public bool fingerInContact;
 
@@ -21,12 +24,12 @@ public class swipeScript : MonoBehaviour
 
     private void Start()
     {
-        screenWidth = Screen.height / 30;
+        screenWidth = Screen.height / 20;
     }
 
     private void Update()
     {
-        swipeUp = tap = false;
+        swipeUp = swipeDown = swipeLeft = swipeRight = tap = false;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -38,7 +41,7 @@ public class swipeScript : MonoBehaviour
         {
             if (!fingerMoved && fingerInContact)
             {
-                print("tap ");
+                //print("tap ");
                 tap = true;
                 cowboyMovement.ChangeDirection();
 
@@ -61,7 +64,7 @@ public class swipeScript : MonoBehaviour
             {
                 if (!fingerMoved && fingerInContact)
                 {
-                    print("tap ");
+                    //print("tap ");
                     tap = true;
                     cowboyMovement.ChangeDirection();
 
@@ -92,15 +95,45 @@ public class swipeScript : MonoBehaviour
         {
             // Direction check.
             float y = swipeDelta.y;
-            if (y > 0 && !swipeUp)
+            float x = swipeDelta.x;
+
+            if (Mathf.Abs(x) > Mathf.Abs(y))
             {
-                fingerMoved = true;
-                swipeUp = true;
-
-
-                print("swipe up ");
-
-                Reset();
+                if (x < 0 && !swipeLeft)
+                {
+                    swipeLeft = true;
+                    print("swipe left ");
+                    cowboyMovement.Jump();
+                    fingerMoved = true;
+                    Reset();
+                }
+                else if (x > 0 && !swipeRight)
+                {
+                    swipeRight = true;
+                    print("swipe right ");
+                    cowboyMovement.Jump();
+                    fingerMoved = true;
+                    Reset();
+                }
+            }
+            else
+            {
+                if (y < 0 && !swipeDown)
+                {
+                    swipeDown = true;
+                    print("swipe down ");
+                    cowboyMovement.Jump();
+                    fingerMoved = true;
+                    Reset();
+                }
+                else if (y > 0 && !swipeUp)
+                {
+                    swipeUp = true;
+                    print("swipe up ");
+                    cowboyMovement.Jump();
+                    fingerMoved = true;
+                    Reset();
+                }
             }
         }
 
